@@ -201,7 +201,7 @@ The function should:
 npm run test-ticket-2f
 ```
 
-If all tests pass, commit your work and move on to the next ticket. ✔️
+If all tests pass - congratulations, you've finished! Commit your work and move on to the next ticket. ✔️
 
 <br>
 
