@@ -1,0 +1,22 @@
+{
+  "name": "working-with-files-and-user-input",
+  "version": "1.0.0",
+  "description": "## 🎯 Workshop objectives",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-ticket2b": "jest -t 2b",
+    "test-ticket2c": "jest -t 2c",
+    "test-ticket2d": "jest -t 2d",
+    "test-ticket2e": "jest -t 2e",
+    "test-ticket2f": "jest -t 2f"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2"
+  }
+}
