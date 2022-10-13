@@ -48,11 +48,7 @@ The following files have been created for you in the root of your project:
 - `quotes.json` - This is where the list of quotes will be stored
 - `.gitignore` - Tells git what files to ignore
 
-We've initialized `quotes.json` with an empty array. It should look like the example below:
-
-```json
-[]
-```
+We've initialized `quotes.json` with an empty array.
 
 💡 In your `.gitignore` file we've added "node_modules" as you don't want all of those files being pushed up to GitHub.
 
