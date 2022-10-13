@@ -33,10 +33,14 @@ In this workshop, you'll build a total of five different helper functions which 
 
 This project has already been initialized for you using the `npm init` command.
 
-Open the `package.json` file and you'll notice that the following packages have already been installed:
+Open the `package.json` file and you'll notice that the following dependencies have already been added:
 
 - uuid - the package you'll use to generate unique ids
 - jest - a package/devDependency which allows us to check your solutions with automated tests
+
+Now would be a good time to install these packages and their dependencies.
+
+Run `npm install` in the terminal.
 
 The following files have been created for you in the root of your project:
 
