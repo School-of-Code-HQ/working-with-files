@@ -2,15 +2,15 @@
 
 ## 🎯 Workshop objectives
 
-- ☑️ Read and write files using the `fs` module
+- ☑️ Read and write to files using the `fs` module
 - ☑️ Use `uuid` (a third-party package) to generate unique ids
-- ☑️ Serialize and deserialize data with `JSON.parse` and `JSON.stringify`
+- ☑️ Serialize and deserialize data the `JSON.parse` and `JSON.stringify` methods
 
 <br>
 
 ## 💼 The brief
 
-Chris wants to build an inspirational quotes app so his words of wisdom are never lost and easily accessible for future bootcampers.
+Chris wants to build an inspirational quotes app so his words of wisdom are never lost and easily accessible for future bootcampers. 😬
 
 Your job isn't to build the entire app right now, but you will be coding the app's core functionality, ready to be imported and used/reused later.
 
@@ -29,30 +29,30 @@ In this workshop, you'll build a total of five different helper functions which 
 
 <br>
 
-## 🎫 Ticket 1 - Starter files
+## 🎫 Ticket 1 - Getting familiar with the starter files
 
 This project has already been initialized for you using the `npm init` command.
 
-Open the `package.json` file and you'll notice that the following dependencies have already been added:
+Open the `package.json` file, and you'll notice the following dependencies:
 
 - uuid - the package you'll use to generate unique ids
 - jest - a package/devDependency which allows us to check your solutions with automated tests
 
-Now would be a good time to install these packages and their dependencies.
+Now would be an excellent time to install these packages and their dependencies.
 
 Run `npm install` in the terminal.
 
-The following files have been created for you in the root of your project:
+You'll notice the following files created for you at the root of your project:
 
-- `quote.js` - This is where the helper functions will be located
-- `quotes.json` - This is where the list of quotes will be stored
-- `.gitignore` - Tells git what files to ignore
+- `quote.js` - where the helper functions will be located
+- `quotes.json` - where the list of quotes will be stored
+- `.gitignore` - tells git what files to ignore
 
 We've initialized `quotes.json` with an empty array.
 
-💡 In your `.gitignore` file we've added "node_modules" as you don't want all of those files being pushed up to GitHub.
+💡 In your `.gitignore` file, we've added "node_modules" as you don't want all those files being pushed up to GitHub.
 
-🧪 You will notice the `__tests__` folder in the root of your project - This can be left alone.
+🧪 Notice the `__tests__` folder in the root of your project - This can be left alone.
 
 <br>
 
@@ -62,7 +62,7 @@ We've initialized `quotes.json` with an empty array.
 
 ### 🎫 Ticket 2a - Getting familiar with quotes.js
 
-Open `quote.js`. In this file two Native (core) modules (`fs` and `path`) and one npm package (`uuid`) has already been imported. E.g.
+Open `quote.js`. In this file, two Native (core) modules (`fs` and `path`) and one npm package (`uuid`) have already been imported. E.g.
 
 ```js
 const fs = require("node:fs/promises");
@@ -70,14 +70,14 @@ const path = require("node:path");
 const { v4: uuidv4 } = require("uuid");
 ```
 
-You'll also notice the following variables have been declared and initialized.
+The following variables have been declared and initialized.
 
 ```js
 const fileName = "quotes.json";
 const filePath = path.resolve(__dirname, fileName);
 ```
 
-As you may have already figured out, `filePath` holds the path to your JSON data file (where the quotes will be stored).
+As you may have already figured, `filePath` holds the path to your JSON data file (where the quotes will be stored).
 
 💡 It would be a good idea to `console.log(filePath)` and check it's correct before moving on to the next ticket.
 
@@ -95,7 +95,7 @@ The function should:
 - save the quote object to the `quotes.json` file at the end of the array
 - return the newly created quote object
 
-💡 Here's an example of what the quote object structure should like.
+💡 Here's an example of the quote object structure.
 
 ```js
 {
@@ -203,8 +203,8 @@ If all tests pass - congratulations, you've finished! Commit your work and push 
 
 ## 🥇 You've finished!
 
-🔍 Take another look at your code and see if anything can be refactored.
+🔍 Take another look at your code and see if you can refactor anything.
 
-🧪 If you do make any changes while refactoring you can run all tests at once using `npm t`.
+🧪 If you do make any changes while refactoring, you can run all tests at once using `npm t`.
 
-🚁 Once you've done that, you could check to see if any fellow bootcampers need help.
+🚁 Once you've done that, you could check to see if fellow bootcampers need help.
