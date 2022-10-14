@@ -4,7 +4,7 @@
 
 - ☑️ Read and write to files using the `fs` module
 - ☑️ Use `uuid` (a third-party package) to generate unique ids
-- ☑️ Serialize and deserialize data the `JSON.parse` and `JSON.stringify` methods
+- ☑️ Serialize and deserialize data using the `JSON.parse` and `JSON.stringify` methods
 
 <br>
 
@@ -52,7 +52,7 @@ We've initialized `quotes.json` with an empty array.
 
 💡 In your `.gitignore` file, we've added "node_modules" as you don't want all those files being pushed up to GitHub.
 
-🧪 Notice the `__tests__` folder in the root of your project - This can be left alone.
+🧪 Notice the `__tests__` folder in the root of your project - this can be left alone.
 
 <br>
 
