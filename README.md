@@ -107,7 +107,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket-2b
+npm run test-ticket2b
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -127,7 +127,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket-2c
+npm run test-ticket2c
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -147,7 +147,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket-2d
+npm run test-ticket2d
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -170,7 +170,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket-2e
+npm run test-ticket2e
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -194,7 +194,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket-2f
+npm run test-ticket2f
 ```
 
 If all tests pass - congratulations, you've finished! Commit your work and push it up to GitHub. ✔️
