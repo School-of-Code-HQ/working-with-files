@@ -1,24 +1,25 @@
-const fs = require("node:fs/promises");
-const path = require("node:path");
-const { v4: uuidv4 } = require("uuid");
+import fs from "node:fs/promises";
+import { v4 as uuidv4 } from "uuid";
 
 const fileName = "quotes.json";
-const filePath = path.resolve(__dirname, fileName);
+// const filePath = path.resolve(__dirname, fileName); <-- delete??
 
-async function addQuote(quoteText) {}
+export async function addQuote(quoteText) {
 
-async function getQuotes() {}
+}
 
-async function getRandomQuote() {}
+export async function getQuotes() {
 
-async function editQuote(id, quoteText) {}
+}
 
-async function deleteQuote(id) {}
+export async function getRandomQuote() {
 
-module.exports = {
-  getQuotes,
-  addQuote,
-  getRandomQuote,
-  editQuote,
-  deleteQuote,
-};
+}
+
+export async function editQuote(id, quoteText) {
+
+}
+
+export async function deleteQuote(id) {
+
+}

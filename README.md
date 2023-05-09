@@ -62,24 +62,20 @@ We've initialized `quotes.json` with an empty array.
 
 ### 🎫 Ticket 2a - Getting familiar with quotes.js
 
-Open `quote.js`. In this file, two Native (core) modules (`fs` and `path`) and one npm package (`uuid`) have already been imported. E.g.
+Open `quote.js`. In this file, a Native (core) module (`fs`) and a npm package (`uuid`) have already been imported. E.g.
 
 ```js
-const fs = require("node:fs/promises");
-const path = require("node:path");
-const { v4: uuidv4 } = require("uuid");
+import fs from "node:fs/promises";
+import { v4 as uuidv4 } from "uuid";
 ```
 
-The following variables have been declared and initialized.
+The following variable has been declared and initialized.
 
 ```js
 const fileName = "quotes.json";
-const filePath = path.resolve(__dirname, fileName);
 ```
 
-As you may have already figured, `filePath` holds the path to your JSON data file (where the quotes will be stored).
-
-💡 It would be a good idea to `console.log(filePath)` and check it's correct before moving on to the next ticket.
+💡 As you may have already figured, `fileName` is the name of your JSON data file (where the quotes will be stored).
 
 <br>
 
@@ -92,6 +88,7 @@ The function should:
 - take in quoteText (String)
 - create a quote object
 - assign a unique id to the quote object (using a v4 uuid)
+- read/parse all quote objects from `quotes.json`
 - save the quote object to the `quotes.json` file at the end of the array
 - return the newly created quote object
 
@@ -107,7 +104,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket2b
+npm run test-ticket-2b
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -127,7 +124,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket2c
+npm run test-ticket-2c
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -147,7 +144,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket2d
+npm run test-ticket-2d
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -170,7 +167,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket2e
+npm run test-ticket-2e
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
@@ -194,7 +191,7 @@ The function should:
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
 ```
-npm run test-ticket2f
+npm run test-ticket-2f
 ```
 
 If all tests pass - congratulations, you've finished! Commit your work and push it up to GitHub. ✔️
