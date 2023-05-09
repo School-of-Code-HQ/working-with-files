@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test-ticket-2b": "jest -t 2b",
-    "test-ticket-2c": "jest -t 2c",
-    "test-ticket-2d": "jest -t 2d",
-    "test-ticket-2e": "jest -t 2e",
-    "test-ticket-2f": "jest -t 2f"
+    "test-ticket-2b": "npm t -- -t 2b",
+    "test-ticket-2c": "npm t -- -t 2c",
+    "test-ticket-2d": "npm t -- -t 2d",
+    "test-ticket-2e": "npm t -- -t 2e",
+    "test-ticket-2f": "npm t -- -t 2f"
   },
   "author": "",
   "license": "ISC",
