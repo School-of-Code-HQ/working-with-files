@@ -26,7 +26,18 @@ afterEach(() => {
   fs.writeFileSync(fileName, "[]", { encoding: "utf8" });
 });
 
+
 describe("ticket 2b", () => {
+  test("that getQuotes returns all quotes", async () => {
+    const quoteText = "This is some random quote test";
+    const result = await addQuote(quoteText);
+    const result2 = await addQuote(quoteText);
+    const quotes = await getQuotes();
+    expect(quotes).toStrictEqual([result, result2]);
+  });
+});
+
+describe("ticket 2c", () => {
   test("that addQuote adds a valid quote", async () => {
     const quoteText = "Five four three two one";
     const result = await addQuote(quoteText);
@@ -39,16 +50,6 @@ describe("ticket 2b", () => {
       quoteText,
     });
     expect(uuid.validate(result.id)).toBe(true);
-    expect(quotes).toStrictEqual([result, result2]);
-  });
-});
-
-describe("ticket 2c", () => {
-  test("that getQuotes returns all quotes", async () => {
-    const quoteText = "This is some random quote test";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
-    const quotes = await getQuotes();
     expect(quotes).toStrictEqual([result, result2]);
   });
 });
