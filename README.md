@@ -35,16 +35,7 @@ In this project, you'll build a total of five different helper functions which w
 
 This project has already been initialized for you using the `npm init` command.
 
-Open the `package.json` file, and you'll notice the following dependencies:
-
-- uuid - the package you'll use to generate unique ids
-- jest - a package/devDependency which allows us to check your solutions with automated tests
-
-Now would be an excellent time to install these packages and their dependencies.
-
-Run `npm install` in the terminal.
-
-You'll notice the following files created for you at the root of your project:
+You'll notice the following files already exist at the root of your project:
 
 - `quote.js` - where the helper functions will be located
 - `quotes.json` - where the list of quotes will be stored
@@ -52,9 +43,36 @@ You'll notice the following files created for you at the root of your project:
 
 We've initialized `quotes.json` with an empty array.
 
-💡 In your `.gitignore` file, we've added "node_modules" as you don't want all those files being pushed up to GitHub.
-
 🧪 Notice the `__tests__` folder in the root of your project - this can be left alone.
+
+Open the `package.json` file, and you'll notice the following dependencies:
+
+- uuid - the package you'll use to generate unique ids
+- jest - a package/devDependency which allows us to check your solutions with automated tests
+
+Now would be an excellent time to install these packages and their dependencies.
+
+💡 In your `.gitignore` file, we've added "node_modules" as you don't want all those files being pushed up to GitHub. There is no need to track them in git, since all you need to do to gather all the node modules your project relies on is run `npm install` - this installs all of the dependencies listed in your `package.json` file.
+
+If you try to run a project that has dependencies (that is, it depends on other modules to run) before running `npm install`, you'll simply get an error message similar to this:
+
+```bash
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'express' imported from /Users/me/my_project/app.js
+    at packageResolve (node:internal/modules/esm/resolve:853:9)
+    at moduleResolve (node:internal/modules/esm/resolve:910:20)
+    at defaultResolve (node:internal/modules/esm/resolve:1130:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:396:12)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:365:25)
+    at ModuleLoader.getModuleJob (node:internal/modules/esm/loader:240:38)
+    at ModuleWrap.<anonymous> (node:internal/modules/esm/module_job:85:39)
+    at link (node:internal/modules/esm/module_job:84:36) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+```
+
+This simply means you imported the express module in your code, but when node looked for express it couldn't find it. No wonder... we haven't installed it yet.
+
+Now is a good time to run `npm install` in the terminal and see that happen for yourself.
 
 <br>
 
@@ -204,6 +222,6 @@ If all tests pass - congratulations, you've finished! Commit your work and push 
 
 🔍 Take another look at your code and see if you can refactor anything.
 
-🧪 If you do make any changes while refactoring, you can run all tests at once using `npm t`.
+🧪 If you do make any changes while refactoring, you can run all tests at once using `npm run test`. `test` is such a common script that node lets you shortcut that, and you can do `npm test` or even `npm t`.
 
 🚁 Once you've done that, you could check to see if fellow bootcampers need help.
