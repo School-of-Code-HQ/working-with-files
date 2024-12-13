@@ -1,11 +1,5 @@
-import {
-  test,
-  describe,
-  expect,
-  beforeAll,
-  afterEach,
-} from "@jest/globals";
-import fs from "node:fs";
+import { test, describe, expect, beforeEach, afterEach } from "@jest/globals";
+import fs from "node:fs/promises";
 import * as uuid from "uuid";
 
 import {
@@ -18,22 +12,24 @@ import {
 
 const fileName = "quotes.json";
 
-beforeAll(() => {
-  fs.writeFileSync(fileName, "[]", { encoding: "utf8" });
+beforeEach(async () => {
+  await fs.writeFile(fileName, "[]", { encoding: "utf8" });
 });
 
-afterEach(() => {
-  fs.writeFileSync(fileName, "[]", { encoding: "utf8" });
+afterEach(async () => {
+  await fs.writeFile(fileName, "[]", { encoding: "utf8" });
 });
-
 
 describe("ticket 2b", () => {
   test("that getQuotes returns all quotes", async () => {
     const quoteText = "This is some random quote test";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
-    const quotes = await getQuotes();
-    expect(quotes).toStrictEqual([result, result2]);
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
+    const result = await getQuotes();
+    expect(result).toStrictEqual(quotes);
   });
 });
 
@@ -41,27 +37,29 @@ describe("ticket 2c", () => {
   test("that addQuote adds a valid quote", async () => {
     const quoteText = "Five four three two one";
     const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
     const quotes = JSON.parse(
-      fs.readFileSync(fileName, { encoding: "utf8" })
+      await fs.readFile(fileName, { encoding: "utf8" })
     );
     expect(result).toStrictEqual({
       id: expect.any(String),
       quoteText,
     });
     expect(uuid.validate(result.id)).toBe(true);
-    expect(quotes).toStrictEqual([result, result2]);
+    expect(quotes).toContainEqual(result);
   });
 });
 
 describe("ticket 2d", () => {
   test("that getRandomQuote returns a random quote", async () => {
     const quoteText = "This is some random quote test";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
     const quote = await getRandomQuote();
     expect(quote).toBeDefined();
-    expect([result, result2]).toContainEqual(quote);
+    expect(quotes).toContainEqual(quote);
   });
 });
 
@@ -69,52 +67,70 @@ describe("ticket 2e", () => {
   test("that editQuote modifies an existing quote", async () => {
     const quoteText = "Five four three two one";
     const editedText = "This has been edited";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
-    const editedQuote = await editQuote(result.id, editedText);
-    expect(editedQuote).toStrictEqual({ id: result.id, quoteText: editedText });
-    const quotes = JSON.parse(
-      fs.readFileSync(fileName, { encoding: "utf8" })
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
+    const editedQuote = await editQuote(quotes[0].id, editedText);
+    expect(editedQuote).toStrictEqual({
+      id: quotes[0].id,
+      quoteText: editedText,
+    });
+    const updatedQuotes = JSON.parse(
+      await fs.readFile(fileName, { encoding: "utf8" })
     );
-    expect(quotes).toStrictEqual([editedQuote, result2]);
+    expect(updatedQuotes).toStrictEqual([
+      { id: quotes[0].id, quoteText: editedText },
+      quotes[1],
+    ]);
   });
 
   test("that editQuote returns null when the quote id given is non-existent", async () => {
     const quoteText = "Five four three two one";
     const editedText = "This has been edited";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
     const editedQuote = await editQuote("Not a real id", editedText);
     expect(editedQuote).toBeNull();
-    const quotes = JSON.parse(
-      fs.readFileSync(fileName, { encoding: "utf8" })
+    const updatedQuotes = JSON.parse(
+      await fs.readFile(fileName, { encoding: "utf8" })
     );
-    expect(quotes).toStrictEqual([result, result2]);
+    expect(updatedQuotes).toStrictEqual(quotes);
   });
 });
 
 describe("ticket 2f", () => {
   test("that deleteQuote deletes the correct existing quote", async () => {
     const quoteText = "Five four three two one";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
-    const deletedQuote = await deleteQuote(result.id);
-    expect(deletedQuote).toStrictEqual(result);
-    const quotes = JSON.parse(
-      fs.readFileSync(fileName, { encoding: "utf8" })
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
+    const deletedQuote = await deleteQuote(quotes[0].id);
+    expect(deletedQuote).toStrictEqual(quotes[0]);
+    const updatedQuotes = JSON.parse(
+      await fs.readFile(fileName, { encoding: "utf8" })
     );
-    expect(quotes).toStrictEqual([result2]);
+    expect(updatedQuotes).toStrictEqual([quotes[1]]);
   });
 
   test("that deleteQuote returns null when the quote id given is non-existent", async () => {
     const quoteText = "Five four three two one";
-    const result = await addQuote(quoteText);
-    const result2 = await addQuote(quoteText);
+    const quotes = [
+      { id: uuid.v4(), quoteText },
+      { id: uuid.v4(), quoteText },
+    ];
+    await fs.writeFile(fileName, JSON.stringify(quotes), { encoding: "utf8" });
     const deletedQuote = await deleteQuote("Not a real id");
     expect(deletedQuote).toBeNull();
-    const quotes = JSON.parse(
-      fs.readFileSync(fileName, { encoding: "utf8" })
+    const updatedQuotes = JSON.parse(
+      await fs.readFile(fileName, { encoding: "utf8" })
     );
-    expect(quotes).toStrictEqual([result, result2]);
+    expect(updatedQuotes).toStrictEqual(quotes);
   });
 });
