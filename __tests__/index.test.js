@@ -1,23 +1,41 @@
-import { test, describe, expect, beforeEach, afterEach } from "@jest/globals";
+import {
+  test,
+  describe,
+  expect,
+  beforeEach,
+  beforeAll,
+  afterAll,
+  jest,
+} from "@jest/globals";
 import fs from "node:fs/promises";
 import * as uuid from "uuid";
 
-import {
-  addQuote,
-  getQuotes,
-  getRandomQuote,
-  editQuote,
-  deleteQuote,
-} from "../quote.js";
+let fileName;
+let addQuote, getQuotes, getRandomQuote, editQuote, deleteQuote;
 
-const fileName = "quotes.json";
+await jest.unstable_mockModule("../config.js", () => ({
+  fileName: "temporary-quotes-for-testing.json",
+}));
+
+beforeAll(async () => {
+  const config = await import("../config.js");
+  fileName = config.fileName;
+  const quote = await import("../quote.js");
+  addQuote = quote.addQuote;
+  getQuotes = quote.getQuotes;
+  getRandomQuote = quote.getRandomQuote;
+  editQuote = quote.editQuote;
+  deleteQuote = quote.deleteQuote;
+  await fs.writeFile(fileName, "[]", { encoding: "utf8" });
+});
 
 beforeEach(async () => {
   await fs.writeFile(fileName, "[]", { encoding: "utf8" });
 });
 
-afterEach(async () => {
-  await fs.writeFile(fileName, "[]", { encoding: "utf8" });
+afterAll(async () => {
+  // delete the test file
+  await fs.unlink(fileName);
 });
 
 describe("ticket 2b", () => {
