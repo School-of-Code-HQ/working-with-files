@@ -1,1 +1,1 @@
-export const fileName = "quotes.json";
+export const FILENAME = "quotes.json";

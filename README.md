@@ -6,8 +6,6 @@
 - ☑️ Use `uuid` (a third-party package) to generate unique ids
 - ☑️ Serialize and deserialize data using the `JSON.parse` and `JSON.stringify` methods
 
-<br>
-
 ## 💼 The brief
 
 Chris wants to build an inspirational quotes app so his words of wisdom are never lost and easily accessible for future bootcampers. 😬
@@ -29,28 +27,31 @@ In this project, you'll build a total of five different helper functions which w
 
 🚨 Requirement for project management: for each completed ticket, make a commit!
 
-<br>
-
 ## 🎫 Ticket 1 - Getting familiar with the starter files
 
 This project has already been initialized for you using the `npm init` command.
 
-You'll notice the following files already exist at the root of your project:
+You'll notice the following files and folders already exist at the root of your project:
 
 - `quote.js` - where the helper functions will be located
 - `quotes.json` - where the list of quotes will be stored
 - `.gitignore` - tells git what files to ignore
+- `package.json` - where the project's dependencies are listed
+- `package-lock.json` - a lock file that keeps track of the exact version of each package that you're using
+- `__tests__` - where the automated tests are located
+- `config.js` - where a `FILENAME` variable is initialised and exported
+- `README.md` - where you're reading this now
 
 We've initialized `quotes.json` with an empty array.
 
-🧪 Notice the `__tests__` folder in the root of your project - this can be left alone.
+🧪 The `__tests__` folder in the root of your project should be left alone and ignored - it is to run tests that help you see if you're on the right track with your solutions.
 
 Open the `package.json` file, and you'll notice the following dependencies:
 
 - uuid - the package you'll use to generate unique ids
 - jest - a package/devDependency which allows us to check your solutions with automated tests
 
-Now would be an excellent time to install these packages and their dependencies.
+Now would be an excellent time to **install** these **npm** packages and their dependencies - do you remember how to do that?
 
 💡 In your `.gitignore` file, we've added "node_modules" as you don't want all those files being pushed up to GitHub. There is no need to track them in git, since all you need to do to gather all the node modules your project relies on is run `npm install` - this installs all of the dependencies listed in your `package.json` file.
 
@@ -74,30 +75,20 @@ This simply means you imported the express module in your code, but when node lo
 
 Now is a good time to run `npm install` in the terminal and see that happen for yourself.
 
-<br>
-
 ## 🎫 Ticket 2 - Creating functionality for quotes
-
-<br>
 
 ### 🎫 Ticket 2a - Getting familiar with quotes.js
 
-Open `quote.js`. In this file, a Native (core) module (`fs`) and a npm package (`uuid`) have already been imported. E.g.
+Open `quote.js`. In this file, a Native (core) module (`fs`) and a npm package (`uuid`) have already been imported.
 
 ```js
 import fs from "node:fs/promises";
 import { v4 as uuidv4 } from "uuid";
 ```
 
-The following variable has been declared and initialized.
+A `FILENAME` variable has been imported from `config.js`.
 
-```js
-const fileName = "quotes.json";
-```
-
-💡 As you may have already figured, `fileName` is the name of your JSON data file (where the quotes will be stored).
-
-<br>
+💡 As you may have already figured, `FILENAME` is the name of your JSON data file (where the quotes will be stored), which is declared as `quotes.json`.
 
 ### 🎫 Ticket 2b - Get all quotes
 
@@ -106,20 +97,18 @@ Inside `quote.js` find the `getQuotes` function.
 The function should:
 
 - not take in any arguments
-- read/parse all quote objects from `quotes.json`
+- read/parse all quote objects from `FILENAME`
 - return an array of all existing quote objects
 
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
-```
+```bash
 npm run test-ticket-2b
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
 
-<br>
-
-### 🎫 Ticket 2c - Add/save a new quote
+### 🎫 Ticket 2c - Add a new quote
 
 Inside `quote.js` find the `addQuote` function.
 
@@ -128,8 +117,8 @@ The function should:
 - take in quoteText (String)
 - create a quote object
 - assign a unique id to the quote object (using a v4 uuid)
-- read/parse all quote objects from `quotes.json`
-- save the quote object to the `quotes.json` file at the end of the array
+- read/parse all quote objects from the file that the `FILENAME` variable points to
+- write to the `FILENAME file the array of quotes including the new quote object at the end of the array
 - return the newly created quote object
 
 💡 Here's an example of the quote object structure.
@@ -143,13 +132,11 @@ The function should:
 
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
-```
+```bash
 npm run test-ticket-2c
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
-
-<br>
 
 ### 🎫 Ticket 2d - Get a random quote
 
@@ -158,18 +145,16 @@ Inside `quote.js` find the `getRandomQuote` function.
 The function should:
 
 - not take in any arguments
-- read/parse all quote objects from `quotes.json`
+- read/parse all quote objects from `FILENAME`
 - return a single randomly selected quote object
 
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
-```
+```bash
 npm run test-ticket-2d
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
-
-<br>
 
 ### 🎫 Ticket 2e - Edit a quote
 
@@ -178,7 +163,7 @@ Inside `quote.js` find the `editQuote` function.
 The function should:
 
 - take in an `id` (String) as the 1st argument and `quoteText` (String) as the 2nd
-- read/parse all quote objects from `quotes.json`
+- read/parse all quote objects from `FILENAME`
 - find the existing quote object with a matching id
 - update and save the matching quote object so that it contains the new `quoteText`
 - return null if there is no matching id
@@ -186,13 +171,11 @@ The function should:
 
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
-```
+```bash
 npm run test-ticket-2e
 ```
 
 If all tests pass, commit your work and move on to the next ticket. ✔️
-
-<br>
 
 ### 🎫 Ticket 2f - Delete a quote
 
@@ -201,24 +184,22 @@ Inside `quote.js` find the `deleteQuote` function.
 The function should:
 
 - take in a single argument `id` (String)
-- read/parse all quote objects from `quotes.json`
+- read/parse all quote objects from `FILENAME`
 - find the existing quote object with a matching id
 - remove the matching quote object
-- save the new list of quote objects to `quotes.json`
+- save the new list of quote objects to `FILENAME`
 - return null if there is no matching id
 - return the deleted quote object if a matching id is found
 
 🧪 This ticket has an automated test. Once you think your solution works run the following command:
 
-```
+```bash
 npm run test-ticket-2f
 ```
 
 If all tests pass - congratulations, you've finished! Commit your work and push it up to GitHub. ✔️
 
-<br>
-
-## 🥇 You've finished!
+## 🥇 You've finished
 
 🔍 Take another look at your code and see if you can refactor anything.
 

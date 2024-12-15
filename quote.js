@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import { v4 as uuidv4 } from "uuid";
-import { fileName } from "./config.js";
+import { FILENAME } from "./config.js";
 
 export async function getQuotes() {}
 
